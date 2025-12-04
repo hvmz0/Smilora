@@ -7,6 +7,10 @@ import ma.dentalTech.entities.patient.Antecedent;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Author : Hamza
+ */
+
 public interface PatientRepository extends CrudRepository<Patient, Long> {
 
     Optional<Patient> findByEmail(String email);

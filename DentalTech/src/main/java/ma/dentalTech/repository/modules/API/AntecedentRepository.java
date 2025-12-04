@@ -9,6 +9,10 @@ import ma.dentalTech.repository.common.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Author : Houssam
+ */
+
 public interface AntecedentRepository extends CrudRepository<Antecedent, Long> {
 
     Optional<Antecedent> findByNom(String nom);
