@@ -1,11 +1,11 @@
-package ma.dentalTech.entities.patient;
+package ma.dentalTech.entities.Patient;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ma.dentalTech.entities.enums.*;
+import ma.dentalTech.entities.Enums.*;
 
 @Data @NoArgsConstructor
 @AllArgsConstructor @Builder

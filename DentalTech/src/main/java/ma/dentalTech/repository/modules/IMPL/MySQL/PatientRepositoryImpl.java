@@ -1,7 +1,7 @@
 package ma.dentalTech.repository.modules.IMPL.MySQL;
 
-import ma.dentalTech.entities.patient.Antecedent;
-import ma.dentalTech.entities.patient.Patient;
+import ma.dentalTech.entities.Patient.Antecedent;
+import ma.dentalTech.entities.Patient.Patient;
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.repository.common.RowMappers;
 import ma.dentalTech.repository.modules.API.PatientRepository;

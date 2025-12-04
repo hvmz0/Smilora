@@ -1,9 +1,9 @@
 package ma.dentalTech.repository.modules.API;
 
-import ma.dentalTech.entities.patient.Antecedent;
-import ma.dentalTech.entities.enums.CategorieAntecedent;
-import ma.dentalTech.entities.enums.NiveauRisque;
-import ma.dentalTech.entities.patient.Patient;
+import ma.dentalTech.entities.Patient.Antecedent;
+import ma.dentalTech.entities.Enums.CategorieAntecedent;
+import ma.dentalTech.entities.Enums.NiveauRisque;
+import ma.dentalTech.entities.Patient.Patient;
 import ma.dentalTech.repository.common.CrudRepository;
 
 import java.util.List;

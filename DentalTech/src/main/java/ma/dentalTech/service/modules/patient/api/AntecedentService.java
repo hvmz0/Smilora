@@ -1,7 +1,7 @@
 package ma.dentalTech.service.modules.patient.api;
 
 import java.util.List;
-import ma.dentalTech.entities.patient.Antecedent;
+import ma.dentalTech.entities.Patient.Antecedent;
 
  public interface AntecedentService
 {

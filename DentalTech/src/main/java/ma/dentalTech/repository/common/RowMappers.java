@@ -1,7 +1,7 @@
 package ma.dentalTech.repository.common;
-import ma.dentalTech.entities.patient.Patient;
-import ma.dentalTech.entities.enums.*;
-import ma.dentalTech.entities.patient.Antecedent;
+import ma.dentalTech.entities.Patient.Patient;
+import ma.dentalTech.entities.Enums.*;
+import ma.dentalTech.entities.Patient.Antecedent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

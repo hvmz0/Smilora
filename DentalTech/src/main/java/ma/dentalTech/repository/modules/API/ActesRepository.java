@@ -1,8 +1,6 @@
 package ma.dentalTech.repository.modules.API;
 
 import ma.dentalTech.entities.Actes.Actes;
-import ma.dentalTech.entities.patient.Antecedent;
-import ma.dentalTech.entities.patient.Patient;
 import ma.dentalTech.repository.common.CrudRepository;
 
 import java.util.List;

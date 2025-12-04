@@ -1,11 +1,11 @@
-package ma.dentalTech.entities.patient;
+package ma.dentalTech.entities.Patient;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.*;
-import ma.dentalTech.entities.enums.Assurance;
-import ma.dentalTech.entities.enums.Sexe;
+import ma.dentalTech.entities.Enums.Assurance;
+import ma.dentalTech.entities.Enums.Sexe;
 
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Patient { //implements Comparable<Patient>{

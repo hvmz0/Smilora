@@ -1,9 +1,9 @@
 package ma.dentalTech.repository.patient;
 
-import ma.dentalTech.entities.patient.Patient;
+import ma.dentalTech.entities.Patient.Patient;
 // Si tes enums sont dans un autre package, adapte ces imports :
-import ma.dentalTech.entities.enums.Assurance;
-import ma.dentalTech.entities.enums.Sexe;
+import ma.dentalTech.entities.Enums.Assurance;
+import ma.dentalTech.entities.Enums.Sexe;
 
 import ma.dentalTech.repository.modules.API.PatientRepository;
 import ma.dentalTech.repository.modules.IMPL.MySQL.PatientRepositoryImpl;

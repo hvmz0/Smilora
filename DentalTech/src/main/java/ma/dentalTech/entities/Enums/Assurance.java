@@ -1,4 +1,4 @@
-package ma.dentalTech.entities.enums;
+package ma.dentalTech.entities.Enums;
 
 public enum Assurance {
 

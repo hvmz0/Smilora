@@ -2,7 +2,7 @@ package ma.dentalTech.service.modules.patient.api;
 
 
 import java.util.List;
-import ma.dentalTech.entities.patient.Patient;
+import ma.dentalTech.entities.Patient.Patient;
 import ma.dentalTech.mvc.dto.PatientDTO;
 
 public interface PatientService {
