@@ -5,8 +5,8 @@ import ma.dentalTech.entities.patient.Patient;
 import ma.dentalTech.entities.enums.Assurance;
 import ma.dentalTech.entities.enums.Sexe;
 
-import ma.dentalTech.repository.modules.patient.api.PatientRepository;
-import ma.dentalTech.repository.modules.patient.impl.mySQL.PatientRepositoryImpl;
+import ma.dentalTech.repository.modules.API.PatientRepository;
+import ma.dentalTech.repository.modules.IMPL.MySQL.PatientRepositoryImpl;
 import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;

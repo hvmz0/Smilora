@@ -4,10 +4,10 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import ma.dentalTech.entities.patient.Antecedent;
-import ma.dentalTech.repository.modules.patient.api.AntecedentRepository;
-import ma.dentalTech.repository.modules.patient.api.PatientRepository;
-import ma.dentalTech.repository.modules.patient.impl.mySQL.AntecedentRepositoryImpl;
-import ma.dentalTech.repository.modules.patient.impl.mySQL.PatientRepositoryImpl;
+import ma.dentalTech.repository.modules.API.AntecedentRepository;
+import ma.dentalTech.repository.modules.API.PatientRepository;
+import ma.dentalTech.repository.modules.IMPL.MySQL.AntecedentRepositoryImpl;
+import ma.dentalTech.repository.modules.IMPL.MySQL.PatientRepositoryImpl;
 import ma.dentalTech.service.modules.patient.api.AntecedentService;
 
 @Data @AllArgsConstructor

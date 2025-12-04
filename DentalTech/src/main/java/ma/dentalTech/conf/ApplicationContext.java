@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import ma.dentalTech.mvc.controllers.modules.patient.api.PatientController;
-import ma.dentalTech.repository.modules.patient.api.PatientRepository;
+import ma.dentalTech.repository.modules.API.PatientRepository;
 import ma.dentalTech.service.modules.patient.api.PatientService;
 
 // Fabrique

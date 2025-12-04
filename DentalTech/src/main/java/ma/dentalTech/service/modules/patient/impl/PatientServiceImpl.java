@@ -7,12 +7,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import ma.dentalTech.entities.patient.Antecedent;
 import ma.dentalTech.entities.patient.Patient;
 import ma.dentalTech.mvc.dto.PatientDTO;
-import ma.dentalTech.repository.modules.patient.api.PatientRepository;
-import ma.dentalTech.repository.modules.patient.impl.mySQL.PatientRepositoryImpl;
+import ma.dentalTech.repository.modules.API.PatientRepository;
+import ma.dentalTech.repository.modules.IMPL.MySQL.PatientRepositoryImpl;
 import ma.dentalTech.service.modules.patient.api.PatientService;
 
 
