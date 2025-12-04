@@ -1,18 +1,17 @@
-package ma.dentalTech.entities.DossierMedicale;
+package ma.dentalTech.entities.Users;
 
-import java.time.LocalDate;
 import lombok.*;
 
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
-public class DossierMedicale implements Comparable<DossierMedicale> {
+public class Roles implements Comparable<Roles> {
     private Long id;
-    private LocalDate dateDeCreation;
+    private Roles libelle;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DossierMedicale)) return false;
-        DossierMedicale that = (DossierMedicale) o;
+        if (!(o instanceof Roles)) return false;
+        Roles that = (Roles) o;
         return id != null && id.equals(that.id);
     }
 
@@ -24,15 +23,15 @@ public class DossierMedicale implements Comparable<DossierMedicale> {
     @Override
     public String toString() {
         return """
-        DossierMedicale {
+        Role {
           id = %d,
-          dateDeCreation = %s
+          libelle = '%s'
         }
-        """.formatted(id, dateDeCreation);
+        """.formatted(id, libelle);
     }
 
     @Override
-    public int compareTo(DossierMedicale other) {
+    public int compareTo(Roles other) {
         return id.compareTo(other.id);
     }
 }
