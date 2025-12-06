@@ -11,6 +11,11 @@ public class Consultation implements Comparable<Consultation> {
     private StatutEnum statut;
     private String observationMed;
 
+    private Long patientId;
+    private Long medecinId;
+    private Long rdvId;
+    private Long dossierMedicalId;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,9 +36,13 @@ public class Consultation implements Comparable<Consultation> {
           id = %d,
           dateCons = %s,
           statut = %s,
-          observationMed = '%s'
+          observationMed = '%s',
+          patientId = %d,
+          medecinId = %d,
+          rdvId = %d,
+          dossierMedicalId = %d,
         }
-        """.formatted(id, dateCons, statut, observationMed);
+        """.formatted(id, dateCons, statut, observationMed,patientId, medecinId, rdvId, dossierMedicalId, rdvId);
     }
 
     @Override

@@ -1,4 +1,5 @@
 package ma.dentalTech.repository.modules.Consultation.Impl.MySQL;
 
-public class ConsultationRepositoryImpl {
+public class ConsultationRepositoryImpl{
+
 }

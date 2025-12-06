@@ -7,6 +7,8 @@ public class InterventionMedecin implements Comparable<InterventionMedecin> {
     private Long id;
     private Double prixDePatient;
     private Integer numDent;
+    private Long consultationId;
+    private Long acteId;
 
     @Override
     public boolean equals(Object o) {
@@ -27,9 +29,11 @@ public class InterventionMedecin implements Comparable<InterventionMedecin> {
         InterventionMedecin {
           id = %d,
           prixDePatient = %.2f,
-          numDent = %d
+          numDent = %d,
+          consultationId = %d,
+          acteId = %d
         }
-        """.formatted(id, prixDePatient, numDent);
+        """.formatted(id, prixDePatient, numDent, consultationId, acteId);
     }
 
     @Override
