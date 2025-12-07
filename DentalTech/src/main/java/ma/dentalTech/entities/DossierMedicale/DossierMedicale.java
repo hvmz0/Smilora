@@ -7,6 +7,7 @@ import lombok.*;
 public class DossierMedicale implements Comparable<DossierMedicale> {
     private Long id;
     private LocalDate dateDeCreation;
+    private String patientId;
 
     @Override
     public boolean equals(Object o) {

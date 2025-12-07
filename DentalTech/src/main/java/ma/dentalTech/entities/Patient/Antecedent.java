@@ -9,6 +9,8 @@ public class Antecedent implements Comparable<Antecedent> {
     private String nom;
     private String categorie;
     private RisqueEnum niveauDeRisque;
+    private Long patientId;
+    private String description;
 
     @Override
     public boolean equals(Object o) {
