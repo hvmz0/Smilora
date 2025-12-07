@@ -6,6 +6,7 @@ import ma.dentalTech.entities.Enums.TypeEnum;
 import ma.dentalTech.repository.modules.Users.Api.NotificationRepository;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,8 @@ public class NotificationRepositoryImpl implements NotificationRepository {
     private Connection getConnection() throws SQLException {
         return SessionFactory.getInstance().getConnection();
     }
+
+    // --- CRUD and FindAll ---
 
     @Override
     public List<Notification> findAll() {
@@ -24,9 +27,7 @@ public class NotificationRepositoryImpl implements NotificationRepository {
              PreparedStatement ps = c.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
-            while (rs.next()) {
-                list.add(mapRow(rs));
-            }
+            while (rs.next()) list.add(mapRow(rs));
         } catch (SQLException e) {
             throw new RuntimeException("Erreur findAll Notification", e);
         }
@@ -110,16 +111,18 @@ public class NotificationRepositoryImpl implements NotificationRepository {
     }
 
     @Override
-    public void delete(Long id) {
-        String sql = "DELETE FROM Notification WHERE id = ?";
-        try (Connection c = getConnection();
-             PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setLong(1, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erreur delete Notification", e);
-        }
+    public void delete(Notification patient) {
+
     }
+
+    @Override
+    public void deleteById(Long aLong) {
+
+    }
+
+    
+
+    // --- FINDERS AND SPECIFIC METHODS (MUST BE IMPLEMENTED) ---
 
     @Override
     public List<Notification> findByPriorite(String priorite) {
@@ -161,6 +164,100 @@ public class NotificationRepositoryImpl implements NotificationRepository {
         return list;
     }
 
+    // Correction des méthodes manquantes :
+
+    @Override
+    public List<Notification> findByType(TypeEnum type) {
+        List<Notification> list = new ArrayList<>();
+        String sql = "SELECT * FROM Notification WHERE type = ?";
+
+        try (Connection c = getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+
+            ps.setString(1, type.name());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) list.add(mapRow(rs));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur findByType", e);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Notification> findByDate(LocalDate date) {
+        List<Notification> list = new ArrayList<>();
+        String sql = "SELECT * FROM Notification WHERE date = ?";
+
+        try (Connection c = getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+
+            ps.setDate(1, Date.valueOf(date));
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) list.add(mapRow(rs));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur findByDate", e);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Notification> findUnread(Long userId) {
+        List<Notification> list = new ArrayList<>();
+        String sql = "SELECT * FROM Notification WHERE user_id = ? AND lu = FALSE ORDER BY date DESC";
+
+        try (Connection c = getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+
+            ps.setLong(1, userId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) list.add(mapRow(rs));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur findUnread", e);
+        }
+        return list;
+    }
+
+    @Override
+    public void markAsRead(Long notificationId) {
+        String sql = "UPDATE Notification SET lu = TRUE WHERE id = ?";
+        try (Connection c = getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+            ps.setLong(1, notificationId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur markAsRead", e);
+        }
+    }
+
+    @Override
+    public long countUnread(Long userId) {
+        String sql = "SELECT COUNT(*) FROM Notification WHERE user_id = ? AND lu = FALSE";
+
+        try (Connection c = getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+
+            ps.setLong(1, userId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getLong(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur countUnread", e);
+        }
+        return 0;
+    }
+
+    // --- MAPPER ---
     private Notification mapRow(ResultSet rs) throws SQLException {
         Notification n = new Notification();
 

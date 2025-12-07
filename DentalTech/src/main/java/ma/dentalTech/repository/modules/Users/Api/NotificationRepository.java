@@ -9,10 +9,17 @@ import java.util.List;
 
 public interface NotificationRepository extends CrudRepository<Notification, Long> {
 
-    List<Notification> findByUserId(Long userId);
-    List<Notification> findByType(TypeEnum type);
+
     List<Notification> findByPriorite(String priorite);
+
+
+    List<Notification> findByUserId(Long userId);
+
+
+    List<Notification> findByType(TypeEnum type);
     List<Notification> findByDate(LocalDate date);
+
+
     List<Notification> findUnread(Long userId);
     void markAsRead(Long notificationId);
     long countUnread(Long userId);
