@@ -1,11 +1,12 @@
 package ma.dentalTech.entities.Users;
-
+import ma.dentalTech.entities.Enums.Role;
 import lombok.*;
 
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Roles implements Comparable<Roles> {
     private Long id;
-    private Roles libelle;
+    private Role libelle;
+
 
     @Override
     public boolean equals(Object o) {

@@ -12,6 +12,8 @@ public class Facture implements Comparable<Facture> {
     private Double reste;
     private StatutEnum statut;
     private LocalDateTime dateFacture;
+    private Long patientId;
+    private Long consultationId;
 
     @Override
     public boolean equals(Object o) {

@@ -8,6 +8,8 @@ public class PrescriptionDesMedicaments implements Comparable<PrescriptionDesMed
     private Integer quantite;
     private String frequence;
     private Integer dureeEnJrs;
+    private Long ordonnanceId;
+    private Long medicamentId;
 
     @Override
     public boolean equals(Object o) {

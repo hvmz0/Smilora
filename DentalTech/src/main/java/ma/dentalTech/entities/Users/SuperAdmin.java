@@ -5,6 +5,7 @@ import lombok.*;
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class SuperAdmin implements Comparable<SuperAdmin> {
     private Long id;
+    private Long UserId;
 
     @Override
     public boolean equals(Object o) {

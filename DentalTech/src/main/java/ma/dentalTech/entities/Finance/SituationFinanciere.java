@@ -12,6 +12,7 @@ public class SituationFinanciere implements Comparable<SituationFinanciere> {
     private Double credit;
     private StatutEnum statut;
     private PromoEnum promo;
+    private Long patientId;
 
     @Override
     public boolean equals(Object o) {

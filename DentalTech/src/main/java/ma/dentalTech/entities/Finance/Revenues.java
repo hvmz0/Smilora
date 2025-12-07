@@ -10,6 +10,7 @@ public class Revenues implements Comparable<Revenues> {
     private String description;
     private Double montant;
     private LocalDateTime date;
+    private Long statistiqueId;
 
     @Override
     public boolean equals(Object o) {

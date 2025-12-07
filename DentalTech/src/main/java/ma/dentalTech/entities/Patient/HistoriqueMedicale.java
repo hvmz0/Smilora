@@ -6,6 +6,7 @@ import lombok.*;
 public class HistoriqueMedicale implements Comparable<HistoriqueMedicale> {
     private Long id;
     private String libele;
+    private Long dossierMedicalId;
 
     @Override
     public boolean equals(Object o) {

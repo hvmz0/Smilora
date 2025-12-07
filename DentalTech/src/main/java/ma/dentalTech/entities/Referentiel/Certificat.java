@@ -10,6 +10,8 @@ public class Certificat implements Comparable<Certificat> {
     private LocalDate dateDeFin;
     private Integer duree;
     private String noteMedecin;
+    private Long consultationId;
+    private Long patientId;
 
     @Override
     public boolean equals(Object o) {

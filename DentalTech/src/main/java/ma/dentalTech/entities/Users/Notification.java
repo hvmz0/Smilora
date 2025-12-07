@@ -1,10 +1,13 @@
 package ma.dentalTech.entities.Users;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import lombok.*;
+// On garde TypeEnum s'il existe dans ton diagramme, sinon passe-le aussi en String
 import ma.dentalTech.entities.Enums.TypeEnum;
-import ma.dentalTech.entities.Enums.PrioriteEnum;
 
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Notification implements Comparable<Notification> {
@@ -14,7 +17,10 @@ public class Notification implements Comparable<Notification> {
     private LocalDate date;
     private LocalTime time;
     private TypeEnum type;
-    private PrioriteEnum priorite;
+    private String priorite;
+    private Long UserId;
+    private boolean lu;
+    // Dans NotificationRepository.java
 
     @Override
     public boolean equals(Object o) {
@@ -48,4 +54,5 @@ public class Notification implements Comparable<Notification> {
     public int compareTo(Notification other) {
         return id.compareTo(other.id);
     }
+
 }

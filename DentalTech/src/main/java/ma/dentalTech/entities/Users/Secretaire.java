@@ -8,6 +8,8 @@ public class Secretaire implements Comparable<Secretaire> {
     private String numCNSS;
     private Double commission;
     private String agendaMed;
+    private Long UserId;
+
 
     @Override
     public boolean equals(Object o) {

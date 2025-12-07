@@ -10,6 +10,7 @@ public class Staff implements Comparable<Staff> {
     private Double prime;
     private LocalDate dateRecrutement;
     private Integer soldeConge;
+    private Long userId;
 
     @Override
     public boolean equals(Object o) {

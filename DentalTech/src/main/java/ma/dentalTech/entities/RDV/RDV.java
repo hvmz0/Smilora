@@ -13,6 +13,8 @@ public class RDV implements Comparable<RDV> {
     private String motif;
     private StatutEnum statut;
     private String noteMedecin;
+    private Long patientId;   // Lombok va créer getPatientId() et setPatientId()
+    private Long medecinId;
 
     @Override
     public boolean equals(Object o) {
