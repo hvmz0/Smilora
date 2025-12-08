@@ -1,6 +1,7 @@
 package ma.dentalTech.repository.modules.Patient.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
+import ma.dentalTech.entities.Enums.CategorieAntecedent;
 import ma.dentalTech.entities.Enums.RisqueEnum;
 import ma.dentalTech.entities.Patient.Antecedent;
 import ma.dentalTech.repository.modules.Patient.Api.AntecedentRepository;
