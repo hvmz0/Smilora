@@ -1,4 +1,4 @@
-package ma.dentalTech.service.modules.Patient.impl;
+package ma.dentalTech.service.modules.Patient.Impl;
 
 import lombok.AllArgsConstructor;
 import ma.dentalTech.common.exceptions.ServiceException;
@@ -6,7 +6,7 @@ import ma.dentalTech.common.exceptions.ValidationException;
 import ma.dentalTech.common.validation.Validators;
 import ma.dentalTech.entities.Patient.Patient;
 import ma.dentalTech.repository.modules.Patient.Api.PatientRepository;
-import ma.dentalTech.service.modules.Patient.api.PatientService;
+import ma.dentalTech.service.modules.Patient.Api.PatientService;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +50,7 @@ public class PatientServiceImpl implements PatientService {
             }
 
             // Création
-            patientRepository.create(patient);
+            patientRepository.create(user);
             return patient;
 
         } catch (ValidationException e) {

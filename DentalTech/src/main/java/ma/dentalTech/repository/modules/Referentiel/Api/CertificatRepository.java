@@ -12,5 +12,7 @@ public interface CertificatRepository extends CrudRepository<Certificat, Long> {
     List<Certificat> findByPatientId(Long patientId);
     List<Certificat> findByDateRange(LocalDate debut, LocalDate fin);
     List<Certificat> findActive();
-    long countByPatientId(Long patientId);
+    long countByPatientId();
+
+    List<Certificat> searchById(String keyword);
 }

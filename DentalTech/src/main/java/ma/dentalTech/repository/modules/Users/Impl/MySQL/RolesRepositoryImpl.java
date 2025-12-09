@@ -3,6 +3,7 @@ package ma.dentalTech.repository.modules.Users.Impl.MySQL;
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Users.Roles;
 import ma.dentalTech.entities.Enums.Role;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Users.Api.RolesRepository;
 
 import java.sql.*;
@@ -55,7 +56,7 @@ public class RolesRepositoryImpl implements RolesRepository {
     }
 
     @Override
-    public void create(Roles r) {
+    public long create(User user) {
         String sql = "INSERT INTO Roles (libelle) VALUES (?)";
 
         try (Connection c = getConnection();
@@ -74,6 +75,7 @@ public class RolesRepositoryImpl implements RolesRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Roles", e);
         }
+        return 0;
     }
 
     @Override

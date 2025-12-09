@@ -8,4 +8,5 @@ public class Medicaments  {
     private String nom;
     private Double prix;
     private String description;
+
 }

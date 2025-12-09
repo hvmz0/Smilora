@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Referentiel.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Referentiel.CabinetMedicale;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Referentiel.Api.CabinetMedicaleRepository;
 
 import java.sql.*;
@@ -53,7 +54,7 @@ public class CabinetMedicaleRepositoryImpl implements CabinetMedicaleRepository 
     }
 
     @Override
-    public void create(CabinetMedicale cm) {
+    public long create(User user) {
         String sql = """
             INSERT INTO CabinetMedicale (nom, email, logo, adresse, tel, tel2, siteWeb, instagram, facebook, description)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -83,6 +84,7 @@ public class CabinetMedicaleRepositoryImpl implements CabinetMedicaleRepository 
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create CabinetMedicale", e);
         }
+        return 0;
     }
 
     @Override

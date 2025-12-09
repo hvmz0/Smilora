@@ -1,4 +1,4 @@
-package ma.dentalTech.service.modules.Finance.impl;
+package ma.dentalTech.service.modules.Finance.Impl;
 
 import lombok.AllArgsConstructor;
 import ma.dentalTech.common.exceptions.ServiceException;
@@ -6,7 +6,7 @@ import ma.dentalTech.common.exceptions.ValidationException;
 import ma.dentalTech.entities.Enums.StatutEnum;
 import ma.dentalTech.entities.Finance.Facture;
 import ma.dentalTech.repository.modules.Finance.Api.FactureRepository;
-import ma.dentalTech.service.modules.Finance.api.FactureService;
+import ma.dentalTech.service.modules.Finance.Api.FactureService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -61,7 +61,7 @@ public class FactureServiceImpl implements FactureService {
                 facture.setDateFacture(LocalDateTime.now());
             }
 
-            factureRepository.create(facture);
+            factureRepository.create(user);
             return facture;
         } catch (ValidationException e) {
             throw e;

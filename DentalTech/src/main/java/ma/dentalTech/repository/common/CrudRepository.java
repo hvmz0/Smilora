@@ -2,6 +2,8 @@
 
 package ma.dentalTech.repository.common;
 
+import ma.dentalTech.entities.Users.User;
+
 import java.util.List;
 
 public interface CrudRepository<T, ID> {
@@ -10,7 +12,7 @@ public interface CrudRepository<T, ID> {
 
     T findById(ID id);
 
-    void create(T newElement);
+    long create(User user);
 
     void update(T newValuesElement);
 

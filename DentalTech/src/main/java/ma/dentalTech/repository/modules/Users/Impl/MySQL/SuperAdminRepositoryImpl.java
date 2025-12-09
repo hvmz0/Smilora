@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Users.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Users.SuperAdmin;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Users.Api.SuperAdminRepository;
 
 import java.sql.*;
@@ -53,7 +54,7 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
     }
 
     @Override
-    public void create(SuperAdmin sa) {
+    public long create(User user) {
         String sql = "INSERT INTO SuperAdmin (user_id) VALUES (?)";
 
         try (Connection c = getConnection();
@@ -71,6 +72,7 @@ public class SuperAdminRepositoryImpl implements SuperAdminRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create SuperAdmin", e);
         }
+        return 0;
     }
 
     @Override

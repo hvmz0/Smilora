@@ -7,5 +7,5 @@ import lombok.*;
 public class DossierMedicale  {
     private Long id;
     private LocalDate dateDeCreation;
-    private String patientId;
+    private Long patientId;
 }

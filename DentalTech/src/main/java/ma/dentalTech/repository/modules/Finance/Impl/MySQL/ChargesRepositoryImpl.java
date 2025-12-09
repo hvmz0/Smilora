@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Finance.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Finance.Charges;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Finance.Api.ChargesRepository;
 import java.sql.*;
 import java.time.LocalDate;
@@ -44,7 +45,7 @@ public class ChargesRepositoryImpl implements ChargesRepository {
     }
 
     @Override
-    public void create(Charges ch) {
+    public long create(User user) {
         String sql = "INSERT INTO Charges (titre, description, montant, date, statistique_id) VALUES (?, ?, ?, ?, ?)";
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -60,6 +61,7 @@ public class ChargesRepositoryImpl implements ChargesRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Charges", e);
         }
+        return 0;
     }
 
     @Override

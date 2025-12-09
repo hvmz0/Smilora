@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Medecin.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Medecin.AgendaMedecin;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Medecin.Api.AgendaMedecinRepository;
 
 import java.sql.*;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class AgendaMedecinRepositoryImpl implements AgendaMedecinRepository {
 
@@ -56,7 +56,7 @@ public class AgendaMedecinRepositoryImpl implements AgendaMedecinRepository {
     }
 
     @Override
-    public void create(AgendaMedecin am) {
+    public long create(User user) {
         String sql = """
             INSERT INTO AgendaMedecin (medecin_id, dateCreation, joursDisponibles, horairesTravail, dateDerniereMaj)
             VALUES (?, ?, ?, ?, ?)
@@ -85,6 +85,7 @@ public class AgendaMedecinRepositoryImpl implements AgendaMedecinRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create AgendaMedecin", e);
         }
+        return 0;
     }
 
     @Override

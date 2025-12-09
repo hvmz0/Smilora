@@ -4,6 +4,7 @@ import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Enums.PromoEnum;
 import ma.dentalTech.entities.Enums.StatutEnum;
 import ma.dentalTech.entities.Finance.SituationFinanciere;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Finance.Api.SituationFinanciereRepository;
 
 import java.sql.*;
@@ -54,7 +55,7 @@ public class SituationFinanciereRepositoryImpl implements SituationFinanciereRep
     }
 
     @Override
-    public void create(SituationFinanciere sf) {
+    public long create(User user) {
         String sql = """
             INSERT INTO SituationFinanciere (totalDesAchats, totalPaye, credit, statut, promo, patient_id)
             VALUES (?, ?, ?, ?, ?, ?)
@@ -80,6 +81,7 @@ public class SituationFinanciereRepositoryImpl implements SituationFinanciereRep
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create SituationFinanciere", e);
         }
+        return 0;
     }
 
     @Override

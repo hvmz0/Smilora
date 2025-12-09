@@ -3,6 +3,7 @@ package ma.dentalTech.repository.modules.Finance.Impl.MySQL;
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Enums.StatutEnum;
 import ma.dentalTech.entities.Finance.Facture;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Finance.Api.FactureRepository;
 
 import java.sql.*;
@@ -55,7 +56,7 @@ public class FactureRepositoryImpl implements FactureRepository {
     }
 
     @Override
-    public void create(Facture f) {
+    public long create(User user) {
         String sql = """
             INSERT INTO Factures (totalFacture, totalPaye, reste, statut, dateFacture, patient_id, consultation_id)
             VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -87,6 +88,7 @@ public class FactureRepositoryImpl implements FactureRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Facture", e);
         }
+        return 0;
     }
 
     @Override

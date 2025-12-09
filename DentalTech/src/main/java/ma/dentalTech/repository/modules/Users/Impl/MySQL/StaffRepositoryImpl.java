@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Users.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Users.Staff;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Users.Api.StaffRepository;
 
 import java.sql.*;
@@ -54,7 +55,7 @@ public class StaffRepositoryImpl implements StaffRepository {
     }
 
     @Override
-    public void create(Staff st) {
+    public long create(User user) {
         String sql = """
             INSERT INTO Staff (salaire, prime, dateRecrutement, soldeConge, user_id)
             VALUES (?, ?, ?, ?, ?)
@@ -79,6 +80,7 @@ public class StaffRepositoryImpl implements StaffRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Staff", e);
         }
+        return 0;
     }
 
     @Override

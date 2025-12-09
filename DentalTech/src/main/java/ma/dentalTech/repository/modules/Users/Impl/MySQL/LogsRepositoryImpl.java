@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Users.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Users.Logs;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Users.Api.LogsRepository;
 
 import java.sql.*;
@@ -53,7 +54,7 @@ public class LogsRepositoryImpl implements LogsRepository {
     }
 
     @Override
-    public void create(Logs log) {
+    public long create(User user) {
         String sql = """
             INSERT INTO Logs (user_id, sessionStart, sessionEnd)
             VALUES (?, ?, ?)
@@ -81,6 +82,7 @@ public class LogsRepositoryImpl implements LogsRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Logs", e);
         }
+        return 0;
     }
 
     @Override

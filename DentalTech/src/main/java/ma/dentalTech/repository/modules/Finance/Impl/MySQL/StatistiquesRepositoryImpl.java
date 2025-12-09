@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Finance.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Finance.Statistiques;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Finance.Api.StatistiquesRepository;
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -43,7 +44,7 @@ public class StatistiquesRepositoryImpl implements StatistiquesRepository {
     }
 
     @Override
-    public void create(Statistiques st) {
+    public long create(User user) {
         String sql = "INSERT INTO Statistiques (totalCharges, totalRevenus, date) VALUES (?, ?, ?)";
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -57,6 +58,7 @@ public class StatistiquesRepositoryImpl implements StatistiquesRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Statistiques", e);
         }
+        return 0;
     }
 
     @Override

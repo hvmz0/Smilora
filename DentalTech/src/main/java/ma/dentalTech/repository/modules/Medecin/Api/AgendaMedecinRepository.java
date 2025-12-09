@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface AgendaMedecinRepository extends CrudRepository<AgendaMedecin, Long> {
 
-    Optional<AgendaMedecin> findByMedecinId(Long medecinId);
+    static Optional<AgendaMedecin> findByMedecinId(Long medecinId);
     List<LocalDateTime> getDisponibilites(Long agendaId);
     List<String> getJoursDisponibles(Long agendaId);
     List<String> getConflits(Long agendaId);

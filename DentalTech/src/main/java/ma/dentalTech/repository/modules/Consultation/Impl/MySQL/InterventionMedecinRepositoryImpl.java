@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Consultation.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Consultation.InterventionMedecin;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Consultation.Api.InterventionMedecinRepository;
 
 import java.sql.*;
@@ -51,8 +52,9 @@ public class InterventionMedecinRepositoryImpl implements InterventionMedecinRep
         return null;
     }
 
+
     @Override
-    public void create(InterventionMedecin im) {
+    public long create(User user) {
         String sql = "INSERT INTO InterventionMedecin (prixDePatient, numDent, consultation_id, acte_id) VALUES (?, ?, ?, ?)";
 
         try (Connection c = getConnection();
@@ -79,6 +81,7 @@ public class InterventionMedecinRepositoryImpl implements InterventionMedecinRep
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create InterventionMedecin", e);
         }
+        return 0;
     }
 
     @Override

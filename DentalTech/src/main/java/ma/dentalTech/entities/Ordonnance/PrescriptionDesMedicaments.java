@@ -11,4 +11,5 @@ public class PrescriptionDesMedicaments  {
     private Long ordonnanceId;
     private Long medicamentId;
 
+
 }

@@ -3,6 +3,7 @@ package ma.dentalTech.repository.modules.Users.Impl.MySQL;
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Users.Notification;
 import ma.dentalTech.entities.Enums.TypeEnum;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Users.Api.NotificationRepository;
 
 import java.sql.*;
@@ -50,7 +51,7 @@ public class NotificationRepositoryImpl implements NotificationRepository {
     }
 
     @Override
-    public void create(Notification n) {
+    public long create(User user) {
         String sql = "INSERT INTO Notification (titre, message, date, time, type, priorite, lu, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection c = getConnection();
@@ -79,6 +80,7 @@ public class NotificationRepositoryImpl implements NotificationRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Notification", e);
         }
+        return 0;
     }
 
     @Override

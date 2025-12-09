@@ -3,6 +3,7 @@ package ma.dentalTech.repository.modules.RDV.Impl.MySQL;
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Enums.StatutEnum;
 import ma.dentalTech.entities.RDV.RDV;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.RDV.Api.RDVRepository;
 
 import java.sql.*;
@@ -55,7 +56,7 @@ public class RDVRepositoryImpl implements RDVRepository {
     }
 
     @Override
-    public void create(RDV rdv) {
+    public long create(User user) {
         String sql = """
             INSERT INTO RDV (heure, date, motif, statut, noteMedecin, patient_id, medecin_id)
             VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -82,6 +83,7 @@ public class RDVRepositoryImpl implements RDVRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create RDV", e);
         }
+        return 0;
     }
 
     @Override

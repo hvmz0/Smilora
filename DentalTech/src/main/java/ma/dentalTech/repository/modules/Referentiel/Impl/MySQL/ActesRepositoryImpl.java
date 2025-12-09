@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Referentiel.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Referentiel.Actes;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Referentiel.Api.ActesRepository;
 
 import java.sql.*;
@@ -52,7 +53,7 @@ public class ActesRepositoryImpl implements ActesRepository {
     }
 
     @Override
-    public void create(Actes a) {
+    public long create(User user) {
         String sql = """
             INSERT INTO Actes (libelle, categorie, prixDeBase)
             VALUES (?, ?, ?)
@@ -75,6 +76,7 @@ public class ActesRepositoryImpl implements ActesRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Actes", e);
         }
+        return 0;
     }
 
     @Override

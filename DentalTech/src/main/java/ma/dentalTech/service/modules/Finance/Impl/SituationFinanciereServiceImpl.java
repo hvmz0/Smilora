@@ -1,4 +1,4 @@
-package ma.dentalTech.service.modules.Finance.impl;
+package ma.dentalTech.service.modules.Finance.Impl;
 
 import lombok.AllArgsConstructor;
 import ma.dentalTech.common.exceptions.ServiceException;
@@ -7,7 +7,7 @@ import ma.dentalTech.entities.Enums.PromoEnum;
 import ma.dentalTech.entities.Enums.StatutEnum;
 import ma.dentalTech.entities.Finance.SituationFinanciere;
 import ma.dentalTech.repository.modules.Finance.Api.SituationFinanciereRepository;
-import ma.dentalTech.service.modules.Finance.api.SituationFinanciereService;
+import ma.dentalTech.service.modules.Finance.Api.SituationFinanciereService;
 
 import java.util.List;
 import java.util.Optional;
@@ -65,7 +65,7 @@ public class SituationFinanciereServiceImpl implements SituationFinanciereServic
                 situation.setPromo(PromoEnum.AUCUNE);
             }
 
-            situationRepository.create(situation);
+            situationRepository.create(user);
             return situation;
         } catch (ValidationException e) {
             throw e;

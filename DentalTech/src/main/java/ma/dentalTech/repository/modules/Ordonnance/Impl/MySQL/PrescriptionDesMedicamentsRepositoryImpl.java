@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Ordonnance.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Ordonnance.PrescriptionDesMedicaments;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Ordonnance.Api.PrescriptionDesMedicamentsRepository;
 
 import java.sql.*;
@@ -52,7 +53,7 @@ public class PrescriptionDesMedicamentsRepositoryImpl implements PrescriptionDes
     }
 
     @Override
-    public void create(PrescriptionDesMedicaments p) {
+    public long create(User user) {
         String sql = """
             INSERT INTO PrescriptionDesMedicaments (quantite, frequence, dureeEnJrs, ordonnance_id, medicament_id)
             VALUES (?, ?, ?, ?, ?)
@@ -77,6 +78,7 @@ public class PrescriptionDesMedicamentsRepositoryImpl implements PrescriptionDes
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create PrescriptionDesMedicaments", e);
         }
+        return 0;
     }
 
     @Override

@@ -9,6 +9,5 @@ public class InterventionMedecin  {
     private Integer numDent;
     private Long consultationId;
     private Long acteId;
-
-
+    private Long MedecinId;
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import ma.dentalTech.mvc.controllers.modules.patient.api.PatientController;
 import ma.dentalTech.mvc.dto.PatientDTO;
 import ma.dentalTech.mvc.ui.modules.patient.PatientView;
-import ma.dentalTech.service.modules.Patient.api.PatientService;
+import ma.dentalTech.service.modules.Patient.Api.PatientService;
 
 @Data @AllArgsConstructor @NoArgsConstructor
 public class PatientControllerImpl implements PatientController {

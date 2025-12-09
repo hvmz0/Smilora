@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.DossierMedicale.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.DossierMedicale.DossierMedicale;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.DossierMedicale.Api.DossierMedicaleRepository;
 
 import java.sql.*;
@@ -54,7 +55,7 @@ public class DossierMedicaleRepositoryImpl implements DossierMedicaleRepository 
     }
 
     @Override
-    public void create(DossierMedicale dm) {
+    public long create(User user) {
         String sql = """
             INSERT INTO DossierMedicale (dateDeCreation, patient_id)
             VALUES (?, ?)
@@ -76,6 +77,7 @@ public class DossierMedicaleRepositoryImpl implements DossierMedicaleRepository 
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create DossierMedicale", e);
         }
+        return 0;
     }
 
     @Override

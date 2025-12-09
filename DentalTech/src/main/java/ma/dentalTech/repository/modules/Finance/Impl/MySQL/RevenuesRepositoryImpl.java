@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Finance.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Finance.Revenues;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Finance.Api.RevenuesRepository;
 
 import java.sql.*;
@@ -54,7 +55,7 @@ public class RevenuesRepositoryImpl implements RevenuesRepository {
     }
 
     @Override
-    public void create(Revenues r) {
+    public long create(User user) {
         String sql = """
             INSERT INTO Revenues (titre, description, montant, date, statistique_id)
             VALUES (?, ?, ?, ?, ?)
@@ -84,6 +85,7 @@ public class RevenuesRepositoryImpl implements RevenuesRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Revenues", e);
         }
+        return 0;
     }
 
     @Override

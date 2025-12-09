@@ -16,5 +16,4 @@ public class Consultation  {
     private Long rdvId;
     private Long dossierMedicalId;
 
-
 }

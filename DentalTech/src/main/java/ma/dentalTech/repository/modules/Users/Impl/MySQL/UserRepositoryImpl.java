@@ -56,7 +56,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void create(User u) {
+    public long create(User user) {
         String sql = """
             INSERT INTO Users (nom, email, adresse, cin, tel, sexe, role_id, login, motDePass, dateNaissance)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -86,6 +86,7 @@ public class UserRepositoryImpl implements UserRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create User", e);
         }
+        return 0;
     }
 
     @Override

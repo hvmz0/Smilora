@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Referentiel.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Referentiel.Certificat;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Referentiel.Api.CertificatRepository;
 
 import java.sql.*;
@@ -53,7 +54,7 @@ public class CertificatRepositoryImpl implements CertificatRepository {
     }
 
     @Override
-    public void create(Certificat cert) {
+    public long create(User user) {
         String sql = """
             INSERT INTO Certificats (dateDébut, dateDeFin, duree, noteMedecin, consultation_id, patient_id)
             VALUES (?, ?, ?, ?, ?, ?)
@@ -79,6 +80,7 @@ public class CertificatRepositoryImpl implements CertificatRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Certificat", e);
         }
+        return 0;
     }
 
     @Override
@@ -203,7 +205,7 @@ public class CertificatRepositoryImpl implements CertificatRepository {
     }
 
     @Override
-    public long countByPatientId(Long patientId) {
+    public long countByPatientId() {
         String sql = "SELECT COUNT(*) FROM Certificats WHERE patient_id = ?";
 
         try (Connection c = getConnection();

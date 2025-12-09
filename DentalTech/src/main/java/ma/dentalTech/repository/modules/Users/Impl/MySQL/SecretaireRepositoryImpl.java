@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Users.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Users.Secretaire;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Users.Api.SecretaireRepository;
 
 import java.sql.*;
@@ -53,7 +54,7 @@ public class SecretaireRepositoryImpl implements SecretaireRepository {
     }
 
     @Override
-    public void create(Secretaire s) {
+    public long create(User user) {
         String sql = """
             INSERT INTO Secretaires (numCNSS, commission, agendaMed, user_id)
             VALUES (?, ?, ?, ?)
@@ -77,6 +78,7 @@ public class SecretaireRepositoryImpl implements SecretaireRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Secretaire", e);
         }
+        return 0;
     }
 
     @Override

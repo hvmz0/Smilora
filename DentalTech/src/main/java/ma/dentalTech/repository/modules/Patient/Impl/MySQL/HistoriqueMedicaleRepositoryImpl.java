@@ -2,6 +2,7 @@ package ma.dentalTech.repository.modules.Patient.Impl.MySQL;
 
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Patient.HistoriqueMedicale;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Patient.Api.HistoriqueMedicaleRepository;
 
 import java.sql.*;
@@ -52,7 +53,7 @@ public class HistoriqueMedicaleRepositoryImpl implements HistoriqueMedicaleRepos
     }
 
     @Override
-    public void create(HistoriqueMedicale h) {
+    public long create(User user) {
         String sql = "INSERT INTO HistoriqueMedicale (libele, dossierMedical_id) VALUES (?, ?)";
 
         try (Connection c = getConnection();
@@ -71,6 +72,7 @@ public class HistoriqueMedicaleRepositoryImpl implements HistoriqueMedicaleRepos
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create HistoriqueMedicale", e);
         }
+        return 0;
     }
 
     @Override

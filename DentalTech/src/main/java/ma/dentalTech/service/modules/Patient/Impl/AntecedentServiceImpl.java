@@ -1,4 +1,4 @@
-package ma.dentalTech.service.modules.Patient.impl;
+package ma.dentalTech.service.modules.Patient.Impl;
 
 import lombok.AllArgsConstructor;
 import ma.dentalTech.common.exceptions.ServiceException;
@@ -10,7 +10,7 @@ import ma.dentalTech.entities.Patient.Antecedent;
 import ma.dentalTech.entities.Patient.Patient;
 import ma.dentalTech.repository.modules.Patient.Api.AntecedentRepository;
 import ma.dentalTech.repository.modules.Patient.Api.PatientRepository;
-import ma.dentalTech.service.modules.Patient.api.AntecedentService;
+import ma.dentalTech.service.modules.Patient.Api.AntecedentService;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +44,7 @@ public class AntecedentServiceImpl implements AntecedentService {
     public Antecedent createAntecedent(Antecedent antecedent) throws ServiceException, ValidationException {
         try {
             validateAntecedent(antecedent);
-            antecedentRepository.create(antecedent);
+            antecedentRepository.create(user);
             return antecedent;
         } catch (ValidationException e) {
             throw e;

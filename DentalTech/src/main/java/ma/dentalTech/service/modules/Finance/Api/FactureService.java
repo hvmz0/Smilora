@@ -1,7 +1,6 @@
-package ma.dentalTech.service.modules.Finance.api;
+package ma.dentalTech.service.modules.Finance.Api;
 
 import ma.dentalTech.entities.Finance.Facture;
-import ma.dentalTech.entities.Enums.StatutEnum;
 import ma.dentalTech.common.exceptions.ServiceException;
 import ma.dentalTech.common.exceptions.ValidationException;
 

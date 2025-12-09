@@ -5,6 +5,7 @@ import ma.dentalTech.entities.Enums.Assurance;
 import ma.dentalTech.entities.Enums.Sexe;
 import ma.dentalTech.entities.Patient.Antecedent;
 import ma.dentalTech.entities.Patient.Patient;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Patient.Api.PatientRepository;
 
 import java.sql.*;
@@ -56,7 +57,7 @@ public class PatientRepositoryImpl implements PatientRepository {
     }
 
     @Override
-    public void create(Patient p) {
+    public long create(User user) {
         String sql = """
             INSERT INTO Patients (nom, adresse, tel, dateNaissance, sexe, assurance)
             VALUES (?, ?, ?, ?, ?, ?)
@@ -82,6 +83,7 @@ public class PatientRepositoryImpl implements PatientRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Patient", e);
         }
+        return 0;
     }
 
     @Override

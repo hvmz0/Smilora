@@ -1,4 +1,4 @@
-package ma.dentalTech.service.modules.Patient.api;
+package ma.dentalTech.service.modules.Patient.Api;
 
 import ma.dentalTech.entities.Patient.Patient;
 import ma.dentalTech.common.exceptions.ServiceException;

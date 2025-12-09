@@ -4,13 +4,12 @@ import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Enums.CategorieAntecedent;
 import ma.dentalTech.entities.Enums.RisqueEnum;
 import ma.dentalTech.entities.Patient.Antecedent;
+import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.Patient.Api.AntecedentRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.time.LocalDate; // Ajout si nécessaire
 
 public class AntecedentRepositoryImpl implements AntecedentRepository {
 
@@ -57,7 +56,7 @@ public class AntecedentRepositoryImpl implements AntecedentRepository {
     // --- CREATE ---
 
     @Override
-    public void create(Antecedent a) {
+    public long create(User user) {
         String sql = "INSERT INTO Antecedents (description, categorie, patient_id) VALUES (?, ?, ?)";
 
         try (Connection c = getConnection();
@@ -75,6 +74,7 @@ public class AntecedentRepositoryImpl implements AntecedentRepository {
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create Antecedent", e);
         }
+        return 0;
     }
 
     // --- UPDATE ---

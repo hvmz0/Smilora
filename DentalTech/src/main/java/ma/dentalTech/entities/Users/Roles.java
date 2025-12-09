@@ -5,5 +5,5 @@ import lombok.*;
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Roles {
     private Long id;
-    private Role libelle;
+    private String libelle;
 }

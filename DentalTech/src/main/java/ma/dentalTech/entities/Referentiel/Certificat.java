@@ -13,4 +13,5 @@ public class Certificat  {
     private Long consultationId;
     private Long patientId;
 
+
 }
