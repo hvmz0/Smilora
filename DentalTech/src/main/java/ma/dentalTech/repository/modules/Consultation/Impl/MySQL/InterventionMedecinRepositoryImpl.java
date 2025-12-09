@@ -60,22 +60,22 @@ public class InterventionMedecinRepositoryImpl implements InterventionMedecinRep
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            ps.setDouble(1, im.getPrixDePatient());
+            ps.setDouble(1, Double.parseDouble(user.getMotDePass()));
 
-            if (im.getNumDent() != null) {
-                ps.setInt(2, im.getNumDent());
+            if (user.getNom() != null) {
+                ps.setInt(2, Integer.parseInt(user.getNom()));
             } else {
                 ps.setNull(2, Types.INTEGER);
             }
 
-            ps.setLong(3, im.getConsultationId());
-            ps.setLong(4, im.getActeId());
+            ps.setLong(3, Long.parseLong(user.getCin()));
+            ps.setLong(4, user.getId());
 
             ps.executeUpdate();
 
             try (ResultSet keys = ps.getGeneratedKeys()) {
                 if (keys.next()) {
-                    im.setId(keys.getLong(1));
+                    user.setId(keys.getLong(1));
                 }
             }
         } catch (SQLException e) {
