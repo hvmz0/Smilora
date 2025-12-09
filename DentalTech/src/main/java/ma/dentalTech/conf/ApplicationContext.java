@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Properties;
 import ma.dentalTech.mvc.controllers.modules.patient.api.PatientController;
 import ma.dentalTech.repository.modules.API.PatientRepository;
-import ma.dentalTech.service.modules.patient.api.PatientService;
+import ma.dentalTech.service.modules.Patient.api.PatientService;
 
 // Fabrique
 public class ApplicationContext {

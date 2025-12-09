@@ -120,6 +120,12 @@ public class AntecedentRepositoryImpl implements AntecedentRepository {
         }
     }
 
+
+
+
+
+    // --- MAP ROW ---
+
     private Antecedent mapRow(ResultSet rs) throws SQLException {
         Antecedent a = new Antecedent();
         a.setId(rs.getLong("id"));
