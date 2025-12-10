@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public interface DossierMedicaleRepository extends CrudRepository<DossierMedicale, Long> {
 
+    DossierMedicale create(DossierMedicale dm);
+
     // Supprimé 'static' et unifié les deux méthodes en une seule
     static Optional<DossierMedicale> findByPatientId(Long patientId) {
         return null;
@@ -16,6 +18,9 @@ public interface DossierMedicaleRepository extends CrudRepository<DossierMedical
 
     // Si vous avez besoin de chercher par String, gardez celle-ci
     // List<DossierMedicale> findByPatientId(String patientId);
+
+    // NOTE : Assurez-vous d'avoir retiré le mot clé 'static' dans l'interface pour que @Override fonctionne
+    Optional<DossierMedicale> findByPatientId(Long patientId);
 
     List<DossierMedicale> findByDateCreation(LocalDate date);
 

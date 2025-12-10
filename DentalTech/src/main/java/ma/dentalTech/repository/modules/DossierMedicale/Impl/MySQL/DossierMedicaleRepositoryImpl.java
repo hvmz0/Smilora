@@ -17,10 +17,14 @@ public class DossierMedicaleRepositoryImpl implements DossierMedicaleRepository 
         return SessionFactory.getInstance().getConnection();
     }
 
+    // =========================================================================
+    // IMPLEMENTATION CRUD (Méthodes de base)
+    // =========================================================================
+
     @Override
     public List<DossierMedicale> findAll() {
         List<DossierMedicale> list = new ArrayList<>();
-        String sql = "SELECT * FROM DossierMedicale ORDER BY dateDeCreation DESC";
+        String sql = "SELECT * FROM DossierMedicale ORDER BY date_creation DESC";
 
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(sql);
@@ -56,16 +60,29 @@ public class DossierMedicaleRepositoryImpl implements DossierMedicaleRepository 
 
     @Override
     public long create(User user) {
-        String sql = """
-            INSERT INTO DossierMedicale (dateDeCreation, patient_id)
-            VALUES (?, ?)
-        """;
+        return 0;
+    }
+
+    @Override
+    public DossierMedicale create(DossierMedicale dm) {
+        String sql = "INSERT INTO DossierMedicale (date_creation, patient_id) VALUES (?, ?)";
 
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            ps.setDate(1, dm.getDateDeCreation() != null ? Date.valueOf(dm.getDateDeCreation()) : Date.valueOf(LocalDate.now()));
-            ps.setLong(2, dm.getPatientId());
+            // 1. Date Creation
+            if (dm.getDateCreation() != null) {
+                ps.setDate(1, java.sql.Date.valueOf(dm.getDateCreation()));
+            } else {
+                ps.setDate(1, new java.sql.Date(System.currentTimeMillis())); // Date actuelle par défaut
+            }
+
+            // 2. Patient ID (Clé étrangère)
+            if (dm.getPatientId() != null) {
+                ps.setLong(2, dm.getPatientId());
+            } else {
+                ps.setNull(2, Types.BIGINT);
+            }
 
             ps.executeUpdate();
 
@@ -74,21 +91,33 @@ public class DossierMedicaleRepositoryImpl implements DossierMedicaleRepository 
                     dm.setId(keys.getLong(1));
                 }
             }
+            return dm;
+
         } catch (SQLException e) {
             throw new RuntimeException("Erreur create DossierMedicale", e);
         }
-        return 0;
     }
 
     @Override
     public void update(DossierMedicale dm) {
-        String sql = "UPDATE DossierMedicale SET dateDeCreation = ? WHERE id = ?";
+        String sql = "UPDATE DossierMedicale SET date_creation = ?, patient_id = ? WHERE id = ?";
 
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
 
-            ps.setDate(1, dm.getDateDeCreation() != null ? Date.valueOf(dm.getDateDeCreation()) : null);
-            ps.setLong(2, dm.getId());
+            if (dm.getDateCreation() != null) {
+                ps.setDate(1, java.sql.Date.valueOf(dm.getDateCreation()));
+            } else {
+                ps.setNull(1, Types.DATE);
+            }
+
+            if (dm.getPatientId() != null) {
+                ps.setLong(2, dm.getPatientId());
+            } else {
+                ps.setNull(2, Types.BIGINT);
+            }
+
+            ps.setLong(3, dm.getId());
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -98,10 +127,12 @@ public class DossierMedicaleRepositoryImpl implements DossierMedicaleRepository 
 
     @Override
     public void delete(DossierMedicale dm) {
-        deleteById(dm.getId());
+        if (dm != null && dm.getId() != null) {
+            deleteById(dm.getId());
+        }
     }
 
-    @Override
+    // Méthode utilitaire interne pour la suppression
     public void deleteById(Long id) {
         String sql = "DELETE FROM DossierMedicale WHERE id = ?";
 
@@ -115,6 +146,11 @@ public class DossierMedicaleRepositoryImpl implements DossierMedicaleRepository 
         }
     }
 
+    // =========================================================================
+    // IMPLEMENTATION DES RECHERCHES SPECIFIQUES (Interface DossierMedicaleRepository)
+    // =========================================================================
+
+    // NOTE : Assurez-vous d'avoir retiré le mot clé 'static' dans l'interface pour que @Override fonctionne
     @Override
     public Optional<DossierMedicale> findByPatientId(Long patientId) {
         String sql = "SELECT * FROM DossierMedicale WHERE patient_id = ?";
@@ -137,12 +173,12 @@ public class DossierMedicaleRepositoryImpl implements DossierMedicaleRepository 
     @Override
     public List<DossierMedicale> findByDateCreation(LocalDate date) {
         List<DossierMedicale> list = new ArrayList<>();
-        String sql = "SELECT * FROM DossierMedicale WHERE dateDeCreation = ?";
+        String sql = "SELECT * FROM DossierMedicale WHERE date_creation = ?";
 
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
 
-            ps.setDate(1, Date.valueOf(date));
+            ps.setDate(1, java.sql.Date.valueOf(date));
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     list.add(mapRow(rs));
@@ -157,13 +193,13 @@ public class DossierMedicaleRepositoryImpl implements DossierMedicaleRepository 
     @Override
     public List<DossierMedicale> findByDateRange(LocalDate debut, LocalDate fin) {
         List<DossierMedicale> list = new ArrayList<>();
-        String sql = "SELECT * FROM DossierMedicale WHERE dateDeCreation BETWEEN ? AND ? ORDER BY dateDeCreation DESC";
+        String sql = "SELECT * FROM DossierMedicale WHERE date_creation BETWEEN ? AND ?";
 
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
 
-            ps.setDate(1, Date.valueOf(debut));
-            ps.setDate(2, Date.valueOf(fin));
+            ps.setDate(1, java.sql.Date.valueOf(debut));
+            ps.setDate(2, java.sql.Date.valueOf(fin));
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     list.add(mapRow(rs));
@@ -178,7 +214,6 @@ public class DossierMedicaleRepositoryImpl implements DossierMedicaleRepository 
     @Override
     public long count() {
         String sql = "SELECT COUNT(*) FROM DossierMedicale";
-
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -192,14 +227,27 @@ public class DossierMedicaleRepositoryImpl implements DossierMedicaleRepository 
         return 0;
     }
 
+    // =========================================================================
+    // MAPPER (ResultSet -> Objet)
+    // =========================================================================
+
     private DossierMedicale mapRow(ResultSet rs) throws SQLException {
+        // Utilisation du Builder si disponible, sinon constructeur par défaut
+        // Ici j'utilise les setters basés sur ton entité standard
         DossierMedicale dm = new DossierMedicale();
+
         dm.setId(rs.getLong("id"));
 
-        Date dc = rs.getDate("dateDeCreation");
-        if (dc != null) dm.setDateDeCreation(dc.toLocalDate());
+        Date sqlDate = rs.getDate("date_creation");
+        if (sqlDate != null) {
+            dm.setDateCreation(sqlDate.toLocalDate());
+        }
 
-        dm.setPatientId(rs.getLong("patient_id"));
+        // Gestion de la clé étrangère patient_id
+        long pId = rs.getLong("patient_id");
+        if (!rs.wasNull()) {
+            dm.setPatientId(pId);
+        }
 
         return dm;
     }

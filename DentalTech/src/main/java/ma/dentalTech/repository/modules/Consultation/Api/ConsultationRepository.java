@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface ConsultationRepository extends CrudRepository<Consultation, Long> {
 
+    Consultation create(Consultation cons);
+
     // Recherche par entité
     List<Consultation> findByDossierMedicaleId(Long dossierId);
     List<Consultation> findByPatientId(Long patientId);

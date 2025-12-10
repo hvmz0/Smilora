@@ -1,5 +1,6 @@
 package ma.dentalTech.repository.modules.Finance.Impl.MySQL;
 
+import com.mysql.cj.jdbc.CallableStatement;
 import ma.dentalTech.conf.SessionFactory;
 import ma.dentalTech.entities.Finance.Statistiques;
 import ma.dentalTech.entities.Users.User;
@@ -48,8 +49,9 @@ public class StatistiquesRepositoryImpl implements StatistiquesRepository {
         String sql = "INSERT INTO Statistiques (totalCharges, totalRevenus, date) VALUES (?, ?, ?)";
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setDouble(1, st.getTotalCharges());
-            ps.setDouble(2, st.getTotalRevenus());
+            CallableStatement st = null;
+            ps.setDouble(1, st.getBatchedArgs());
+            ps.setDouble(2, st.getBoolean());
             ps.setTimestamp(3, Timestamp.valueOf(st.getDate()));
             ps.executeUpdate();
             try (ResultSet keys = ps.getGeneratedKeys()) {

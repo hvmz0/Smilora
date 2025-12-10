@@ -8,4 +8,10 @@ public class DossierMedicale  {
     private Long id;
     private LocalDate dateDeCreation;
     private Long patientId;
+
+    public void setDateCreation(LocalDate localDate) {
+    }
+
+    public LocalDate getDateCreation() {
+    }
 }
