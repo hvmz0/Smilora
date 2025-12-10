@@ -6,6 +6,7 @@ import ma.dentalTech.entities.RDV.RDV;
 import ma.dentalTech.entities.Users.User;
 import ma.dentalTech.repository.modules.RDV.Api.RDVRepository;
 
+import javax.swing.*;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -65,10 +66,11 @@ public class RDVRepositoryImpl implements RDVRepository {
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
+            SpinnerDateModel rdv;
             ps.setTimestamp(1, rdv.getHeure() != null ? Timestamp.valueOf(rdv.getHeure()) : null);
             ps.setDate(2, rdv.getDate() != null ? Date.valueOf(rdv.getDate()) : null);
-            ps.setString(3, rdv.getMotif());
-            ps.setString(4, rdv.getStatut() != null ? rdv.getStatut().name() : StatutEnum.EN_ATTENTE.name());
+            ps.setDate(3, (Date) rdv.getDate());
+            ps.setString(4, c.getMetaData() != null ? rdv.getMetaData().name() : StatutEnum.EN_ATTENTE.name());
             ps.setString(5, rdv.getNoteMedecin());
             ps.setLong(6, rdv.getPatientId());
             ps.setLong(7, rdv.getMedecinId());
