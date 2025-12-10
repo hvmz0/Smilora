@@ -11,8 +11,6 @@ public interface DossierMedicaleRepository extends CrudRepository<DossierMedical
 
     DossierMedicale create(DossierMedicale dm);
 
-
-    // NOTE : Assurez-vous d'avoir retiré le mot clé 'static' dans l'interface pour que @Override fonctionne
     Optional<DossierMedicale> findByPatientId(Long patientId);
 
     List<DossierMedicale> findByDateCreation(LocalDate date);
